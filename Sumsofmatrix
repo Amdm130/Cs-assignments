@@ -1,0 +1,56 @@
+import java.util.Scanner;
+public class assign1 
+{
+    public static void main(String[] args) 
+    {
+        Scanner s = new Scanner(System.in);
+        System.out.print("Enter number of rows: ");
+        int rows = s.nextInt();
+        System.out.print("Enter number of columns: ");
+        int cols = s.nextInt();
+        int[][] a = new int[rows][cols];      
+        for (int i = 0; i < rows; i++) 
+        {
+            System.out.println("Enter elements of row " + (i + 1) + " separated by space:(eg: 1 2 3)");
+            for (int j = 0; j < cols; j++) 
+            {
+                a[i][j] = s.nextInt();
+            }
+        }
+        for (int i = 0; i < rows; i++) 
+        {
+            int rowSum = 0;
+            for (int j = 0; j < cols; j++) 
+            {
+                rowSum += a[i][j];
+            }
+            System.out.println("Sum of row " + (i + 1) + " = " + rowSum);
+        }    
+        for (int j = 0; j < cols; j++) 
+        {
+            int colSum = 0;
+            for (int i = 0; i < rows; i++) 
+            {
+                colSum += a[i][j];
+            }
+            System.out.println("Sum of column " + (j + 1) + " = " + colSum);
+        }
+        if (rows == cols) 
+        {
+            int d1 = 0;
+            int d2 = 0;
+            for (int i = 0; i < rows; i++) 
+            {
+                d1 += a[i][i];
+                d2 += a[i][rows - 1 - i];
+            }
+            System.out.println("Forward diagonal sum = " + d1);
+            System.out.println("Reverse diagonal sum = " + d2);
+        }
+        else
+        {
+            System.out.println("Sum of diagonal is not possible");
+        }
+        s.close();
+    }
+}
