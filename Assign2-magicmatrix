@@ -1,0 +1,67 @@
+import java.util.Scanner;
+public class assign2 {
+    public static void main(String[] args) {
+
+        Scanner s = new Scanner(System.in);
+        System.out.print("Enter size of matrix (odd number only): ");
+        int n = s.nextInt();
+        int[][] mm = new int[n][n];
+        int row = 0;
+        int col = n / 2;
+
+        for (int num = 1; num <= n * n; num++) 
+        {
+            mm[row][col] = num;
+            int newRow = (row - 1 + n) % n;
+            int newCol = (col + 1) % n;
+            if (mm[newRow][newCol] != 0)
+            {
+                row = (row + 1) % n;
+            } 
+            else 
+            {
+                row = newRow;
+                col = newCol;
+            }
+        }
+        System.out.println("The Magic Matrix will be:");
+        
+        for (int i = 0; i < n; i++) 
+        {
+            for (int j = 0; j < n; j++) 
+            {
+                System.out.print(mm[i][j] + "   ");
+            }
+            System.out.println();
+        }
+        for (int i = 0; i < n; i++) 
+        {
+            int rowSum = 0;
+            for (int j = 0; j < n; j++) 
+            {
+                rowSum += mm[i][j];
+            }
+            System.out.println("Sum of row " + (i + 1) + " = " + rowSum);
+        }
+        for (int j = 0; j < n; j++) 
+        {
+            int colSum = 0;
+            for (int i = 0; i < n; i++) 
+            {
+                colSum += mm[i][j];
+            }
+            System.out.println("Sum of column " + (j + 1) + " = " + colSum);
+        }
+        int d1 = 0;
+        int d2 = 0;
+        for (int i = 0; i < n; i++) 
+        {
+            d1 += mm[i][i];
+            d2 += mm[i][n - 1 - i];
+        }
+        System.out.println("Forward diagonal sum = " + d1);
+        System.out.println("Reverse diagonal sum = " + d2);
+
+        s.close();
+    }
+}
